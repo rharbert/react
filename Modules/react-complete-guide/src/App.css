@@ -1,6 +1,12 @@
-/* This file is the product of Assignment in Module 3 */
-
 .App {
     text-align: center;
   }
+
+.blue {
+  color: blue;
+}
+
+.bold {
+  font-weight: bold;
+}
   

@@ -1,52 +1,95 @@
 import React, { Component } from 'react';
 import './App.css';
+import Person from './Component-Person/Person';
 
-import CharComponent from './Module-3-Assignment/CharComponent';
-import ValidationComponent from './Module-3-Assignment/ValidationComponent';
-
-/* This file is the product of Assignment in Module 3 */
+/* This file is the product of all Lessons in Module 4 */
 
 class App extends Component {
-	state = {
-		userInput: ''
-	}
-	
-	inputChangeHandler = (event) => {
-		this.setState({userInput: event.target.value})
-	}
 
-	deleteIndexHandler = (index) => {
-		const text = this.state.userInput.split(' ');
-		text.splice(index, 1);
-		const updatedText = text.join(' ');
-		this.setState({userInput: updatedText});
+	state = {
+		persons: [
+			{ id: '123', name: 'Adam', age: 800, username: 'ABC123'},
+      { id: '456', name: 'Abel', age: 30, username: 'ABC456'},
+      { id: '789', name: 'Abinadab', age: 250, username: 'ABC789'}
+		]
 	}
-	
+	/***** Methods *****/
+	togglePersonHandler = () => {
+		const doesShow = this.state.showPersons;
+		this.setState({showPersons: !doesShow});
+	}
+	usernameHandler = (event, id) => {
+		const personIndex = this.state.persons.findIndex(person => {
+			return person.id === id;
+		});
+
+		const person = {
+			...this.state.persons[personIndex] 
+		};
+
+		person.name = event.target.value;
+		
+		this.setState({
+			persons: [
+				{id: '123', name: 'Adam', age: 800, username: event.target.value},
+     		{id: '456', name: 'Abel', age: 30, username: event.target.value},
+      	{id: '789', name: 'Abinadab', age: 250, username: event.target.value}
+			]
+		});
+	}
+	deletePersonHandler = (personIndex) => {
+		const persons = [...this.state.persons]; //Copies the original array since we don't want to mutate original
+		persons.splice(personIndex, 1);
+		this.setState({persons: persons})
+	}
+	/***** End Methods *****/
+
 	render() {
-		const styling = {
-			backgroundColor: 'pink',
-			font: 'inherit',
+		const style = {
+			backgroundColor: 'green',
+			color: 'white',
 			padding: '8px',
 			margin: '.5rem',
 			cursor: 'pointer'
 		};
 
-		const charList = this.state.userInput.split(' ').map((chars, index) => {
-			return <CharComponent
-				characters={chars}
-				key={index}
-				clicked={() => this.deleteIndexHandler(index)} />;
-		});
+		let persons = null; 
+		if (this.state.showPersons) {
+			persons = (
+				<div>{/* Toggled Div to Show/Hide all Person components */} 
+					{/* Use the Person Component and fill it out by mapping through the array of persons shown
+					in the 'state' above and place it all in a Div that toggles on/off */}
+					{this.state.persons.map((person, index) => {
+						return <Person
+							click={() => this.deletePersonHandler(index)}
+							name={person.name}
+							age={person.age}
+							username={person.username} 
+							key={person.id} /* This property is required by React. Why? Keys help React identify which items
+							have changed, are added, or are removed. Keys should be given to elements inside the array to give
+							elements a stable identity. Each child in an array should have a unique 'key' prop. */ 
+							change={(event) => this.usernameHandler(event, person.id)}/>
+					})}
+				</div>/* End Toggled Div to Show/Hide all Person components*/
+			);
+			style.backgroundColor = 'red';
+		}
+
+		let classes = [];
+		if (this.state.persons.length <= 2) {
+			classes.push('blue');
+		}
+		if(this.state.persons.length <= 1) {
+			classes.push('bold');
+		}
+
     return (
       <div className='App'>
-				<input
-				type="text"
-				onChange={this.inputChangeHandler}
-				value={this.state.userInput}
-				style={styling} />
-				<p>{this.state.userInput}</p>
-				<ValidationComponent inputLength={this.state.userInput.length}/>
-				{charList}
+				<p className={classes.join(' ')}>Instructions for this application here</p>
+				<button 
+				style={style}
+				onClick={this.togglePersonHandler}>Show/Hide</button>
+				{persons}
       </div>
     );
   }
