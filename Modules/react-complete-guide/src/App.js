@@ -4,8 +4,6 @@ import './App.css';
 import CharComponent from './Module-3-Assignment/CharComponent';
 import ValidationComponent from './Module-3-Assignment/ValidationComponent';
 
-import './Module-3-Assignment/CharComponent.css';
-
 /* This file is the product of Assignment in Module 3 */
 
 class App extends Component {
