@@ -5,9 +5,10 @@ const person = (props) => { /* props (a keyword) = properties or attributes. All
 	a parent component */
 	return (
 		<div className="Person">
-			<p onClick={props.click}>I'm {props.name}. I'm {props.age} years old.</p>
+			<p onClick={props.click}>I'm {props.name}. I'm {props.age} years old.<br>
+				</br>My username is <b>{props.username}</b></p>
 			<p>{props.children}</p>
-			<input type="text"></input>
+			<input type="text" onChange={props.change} value={props.username}></input>
 		</div>
 	
 	)

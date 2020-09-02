@@ -1,209 +1,57 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Component-Person/Person';
 
-/* This file is the product of all Lessons in Module 3 */
+import CharComponent from './Module-3-Assignment/CharComponent';
+import ValidationComponent from './Module-3-Assignment/ValidationComponent';
+
+import './Module-3-Assignment/CharComponent.css';
+
+/* This file is the product of Assignment in Module 3 */
 
 class App extends Component {
-
 	state = {
-		persons: [
-			{ id: '', name: 'Adam', age: 800},
-      { id: '', name: 'Abel', age: 30},
-      { id: '', name: 'Abinadab', age: 250}
-		]
+		userInput: ''
+	}
+	
+	inputChangeHandler = (event) => {
+		this.setState({userInput: event.target.value})
 	}
 
-	/* Method to Show/Hide all Person components; based on Boolean, true or false */
-	togglePersonHandler = () => {
-		const doesShow = this.state.showPersons;
-		this.setState({showPersons: !doesShow});
+	deleteIndexHandler = (index) => {
+		const text = this.state.userInput.split(' ');
+		text.splice(index, 1);
+		const updatedText = text.join(' ');
+		this.setState({userInput: updatedText});
 	}
-	deletePersonHandler = (personIndex) => {
-		const persons = [...this.state.persons]; //Copies the original array since we don't want to mutate original
-		persons.splice(personIndex, 1);
-		this.setState({persons: persons})
-	}
-
+	
 	render() {
 		const styling = {
-			backgroundColor: 'lightblue',
+			backgroundColor: 'pink',
 			font: 'inherit',
 			padding: '8px',
 			margin: '.5rem',
 			cursor: 'pointer'
 		};
 
-		let persons = null; 
-		if (this.state.showPersons) {
-			persons = (
-				<div >{/* Toggled Div to Show/Hide all Person components */} 
-					{/* Use the Person Component and fill it out by mapping through the array of persons shown
-					in the 'state' above and place it all in a Div that toggles on/off */}
-					{this.state.persons.map((person, index) => {
-						return <Person
-							click={() => this.deletePersonHandler(index)}
-							name={person.name}
-							age={person.age} 
-							key={person.id} /* This property is required by React. Why? Keys help React identify which items
-							have changed, are added, or are removed. Keys should be given to elements inside the array to give
-							elements a stable identity. Each child in an array should have a unique 'key' prop. */ />
-					})}
-				</div>/* End Toggled Div to Show/Hide all Person components*/
-			);
-		}
-
+		const charList = this.state.userInput.split(' ').map((chars, index) => {
+			return <CharComponent
+				characters={chars}
+				key={index}
+				clicked={() => this.deleteIndexHandler(index)} />;
+		});
     return (
       <div className='App'>
-				<button 
-				style={styling}
-				onClick={this.togglePersonHandler}>Show/Hide Persons</button>
-				{persons}
+				<input
+				type="text"
+				onChange={this.inputChangeHandler}
+				value={this.state.userInput}
+				style={styling} />
+				<p>{this.state.userInput}</p>
+				<ValidationComponent inputLength={this.state.userInput.length}/>
+				{charList}
       </div>
     );
   }
 }
 
 export default App;
-
-/********************** Reference Code Below **********************/
-
-/* Render content conditionally. In this case, we want to 
-Toggle the Div to Show/Hide all Person components */
-
-// class App extends Component {
-
-// 	state = {
-// 		persons: [
-// 			{ name: 'Adam', age: 800},
-//       { name: 'Abel', age: 30},
-//       { name: 'Abinadab', age: 250}
-// 		]
-// 	}
-// 	/* Method to make the Switch Name button below cause a change */
-// 	switchAgeHandler = () => {
-// 		this.setState({
-// 			persons: [
-// 				{ name: 'Adam', age: 900},
-//         { name: 'Abel', age: 35},
-//         { name: 'Abinadab', age: 200}
-// 			],
-// 			showPersons: false
-// 		});
-// 	}
-// 	/* Method to Show/Hide all Person components; based on Boolean, true or false */
-// 	togglePersonHandler = () => {
-// 		const doesShow = this.state.showPersons;
-// 		this.setState({showPersons: !doesShow});
-// 	}
-
-
-// 	render() {
-// 		const styling = {
-// 			backgroundColor: 'lightblue',
-// 			font: 'inherit',
-// 			padding: '8px',
-// 			margin: '.5rem',
-// 			cursor: 'pointer'
-// 		};
-
-// 		let persons = null; 
-// 		if (this.state.showPersons) {
-// 			persons = (
-// 				<div >{/* Toggled Div to Show/Hide all Person components*/} 
-// 					<Person 
-// 						name={this.state.persons[0].name}
-// 						age={this.state.persons[0].age}></Person>
-// 					<Person
-// 						name={this.state.persons[1].name}
-// 						age={this.state.persons[1].age}></Person>
-// 					<Person 
-// 						name={this.state.persons[2].name}
-// 						age={this.state.persons[2].age}></Person>
-// 				</div>/* End Toggled Div to Show/Hide all Person components*/
-// 			);
-// 		}
-
-//     return (
-//       <div className='App'>
-// 				<button 
-// 				style={styling}
-// 				onClick={this.togglePersonHandler}>Show/Hide Persons</button>
-// 				{persons}
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
-/*Alternative way to render content conditionally. In this case, we want to 
-Toggle the Div to Show/Hide all Person components; considered less elegant than the method that
-precedes
-*/
-
-// class App extends Component {
-
-// 	state = {
-// 		persons: [
-// 			{ name: 'Adam', age: 800},
-//       { name: 'Abel', age: 30},
-//       { name: 'Abinadab', age: 250}
-// 		]
-// 	}
-// 	/* Method to make the Switch Name button below cause a change */
-// 	switchAgeHandler = () => {
-// 		this.setState({
-// 			persons: [
-// 				{ name: 'Adam', age: 900},
-//         { name: 'Abel', age: 35},
-//         { name: 'Abinadab', age: 200}
-// 			],
-// 			showPersons: false
-// 		});
-// 	}
-// 	/* Method to Show/Hide all Person components; based on Boolean, true or false */
-// 	togglePersonHandler = () => {
-// 		const doesShow = this.state.showPersons;
-// 		this.setState({showPersons: !doesShow});
-// 	}
-
-
-// 	render() {
-// 		const styling = {
-// 			backgroundColor: 'lightblue',
-// 			font: 'inherit',
-// 			padding: '8px',
-// 			margin: '.5rem',
-// 			cursor: 'pointer'
-// 		};
-
-//     return (
-//       <div className='App'>
-// 				<button 
-// 				style={styling}
-// 				onClick={this.togglePersonHandler}>Show/Hide Persons</button>
-// 				{/* Curly braces around div allows us to enter JS (in this case, a ternary statement) that 
-// 				makes the div "conditional"; that is, logic to check whether its state is true or false
-// 				(note: default state is false; aka, not shown) (line 24) */} 
-// 				{this.state.showPersons === true ? 
-// 					<div >{/* Toggle Div to Show/Hide all Person components*/} 
-// 						<Person 
-// 							name={this.state.persons[0].name}
-// 							age={this.state.persons[0].age}></Person>
-// 						<Person
-// 							name={this.state.persons[1].name}
-// 							age={this.state.persons[1].age}></Person>
-// 						<Person 
-// 							name={this.state.persons[2].name}
-// 							age={this.state.persons[2].age}></Person>
-// 					</div> : null }{/* End Toggle Div to Show/Hide all Person components*/} 
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
