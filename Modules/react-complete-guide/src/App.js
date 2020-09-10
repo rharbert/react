@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import classes from './App.css';
 import Person from './Component-Person/Person';
 
 
@@ -50,6 +50,8 @@ class App extends Component {
 	render() {
 
 		let persons = null; 
+		let buttonClasses = '';
+
 		if (this.state.showPersons) {
 			persons = (
 				<div>{/* Toggled Div to Show/Hide all Person components */} 
@@ -68,22 +70,23 @@ class App extends Component {
 					})}
 				</div>/* End Toggled Div to Show/Hide all Person components*/
 			);
-		
+			
+			buttonClasses = classes.Red;
 		}
 
-		let classes = [];
+		let assignedClasses = [];
 		if (this.state.persons.length <= 2) {
-			classes.push('blue');
+			assignedClasses.push(classes.blue);
 		}
 		if(this.state.persons.length <= 1) {
-			classes.push('bold');
+			assignedClasses.push(classes.bold);
 		}
 
     return (
 
-				<div className='App'>
-					<p className={classes.join(' ')}>Instructions for this application here</p>
-					<button className="button" onClick={this.togglePersonHandler}>Show/Hide</button>
+				<div className={classes.App}>
+					<p className={assignedClasses.join(' ')}>Instructions for this application here</p>
+					<button className={buttonClasses} onClick={this.togglePersonHandler}>Show/Hide</button>
 					{persons}
 				</div>
 
