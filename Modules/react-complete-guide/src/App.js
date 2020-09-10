@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+
 import './App.css';
 import Person from './Component-Person/Person';
 
 
 /* This file is the product of all Lessons in Module 4 */
 
-const StyledButton = styled.button`
-	background-color: ${props => props.alt ? 'red' : 'green'};
-	color: white;
-	padding: 8px;
-	margin: .5rem;
-	cursor: pointer;
-	&:hover {
-		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-		color: black;
-	}
-`;
 
 class App extends Component {
 
@@ -94,7 +83,7 @@ class App extends Component {
 
 				<div className='App'>
 					<p className={classes.join(' ')}>Instructions for this application here</p>
-					<StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler}>Show/Hide</StyledButton>
+					<button className="button" onClick={this.togglePersonHandler}>Show/Hide</button>
 					{persons}
 				</div>
 
