@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Component-Person/Person';
-import Radium, {StyleRoot} from 'radium';
+
 
 /* This file is the product of all Lessons in Module 4 */
+
+const StyledButton = styled.button`
+	background-color: ${props => props.alt ? 'red' : 'green'};
+	color: white;
+	padding: 8px;
+	margin: .5rem;
+	cursor: pointer;
+	&:hover {
+		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+		color: black;
+	}
+`;
 
 class App extends Component {
 
@@ -46,17 +59,6 @@ class App extends Component {
 	/***** End Methods *****/
 
 	render() {
-		const style = {
-			backgroundColor: 'green',
-			color: 'white',
-			padding: '8px',
-			margin: '.5rem',
-			cursor: 'pointer',
-			':hover': {
-				backgroundColor: 'lightgreen',
-				color: 'black'
-			}
-		};
 
 		let persons = null; 
 		if (this.state.showPersons) {
@@ -77,10 +79,7 @@ class App extends Component {
 					})}
 				</div>/* End Toggled Div to Show/Hide all Person components*/
 			);
-			style.backgroundColor = 'red';
-			style[':hover'] = {
-				backgroundColor: 'salmon',
-				color: 'black' }
+		
 		}
 
 		let classes = [];
@@ -92,18 +91,15 @@ class App extends Component {
 		}
 
     return (
-			<StyleRoot>
+
 				<div className='App'>
 					<p className={classes.join(' ')}>Instructions for this application here</p>
-					<button 
-					style={style}
-					onClick={this.togglePersonHandler}>Show/Hide</button>
+					<StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler}>Show/Hide</StyledButton>
 					{persons}
 				</div>
-			</StyleRoot>
+
     );
   }
 }
 
-export default Radium(App); //Radium allows us to add functionality (for example, pseudo styles)
-														// to our styling
+export default App;
