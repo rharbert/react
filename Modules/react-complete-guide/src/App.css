@@ -2,7 +2,7 @@
     text-align: center;
   }
 
-/*Assigned Classes */
+/* Begin Assigned Classes */
 .blue {
   color: blue;
 }
@@ -10,6 +10,7 @@
 .bold {
   font-weight: bold;
 }
+/* End Assigned Classes */
 
 .App button {
   background-color: green;

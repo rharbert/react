@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Person.css';
 
-
 const person = (props) => { /* props (a keyword) = properties or attributes. Allows you to pass data from
 	a parent component */
 

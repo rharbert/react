@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-
 import classes from './App.css';
 import Person from './Component-Person/Person';
 
-
 /* This file is the product of all Lessons in Module 4 */
-
 
 class App extends Component {
 
@@ -16,7 +13,7 @@ class App extends Component {
       { id: '789', name: 'Abinadab', age: 250, username: 'ABC789'}
 		]
 	}
-	/***** Methods *****/
+	/***** Begin Methods *****/
 	togglePersonHandler = () => {
 		const doesShow = this.state.showPersons;
 		this.setState({showPersons: !doesShow});
