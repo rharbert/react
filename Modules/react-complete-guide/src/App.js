@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Component-Person/Person';
+import Radium from 'radium';
 
 /* This file is the product of all Lessons in Module 4 */
 
@@ -50,7 +51,11 @@ class App extends Component {
 			color: 'white',
 			padding: '8px',
 			margin: '.5rem',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			':hover': {
+				backgroundColor: 'lightgreen',
+				color: 'black'
+			}
 		};
 
 		let persons = null; 
@@ -73,6 +78,9 @@ class App extends Component {
 				</div>/* End Toggled Div to Show/Hide all Person components*/
 			);
 			style.backgroundColor = 'red';
+			style[':hover'] = {
+				backgroundColor: 'salmon',
+				color: 'black' }
 		}
 
 		let classes = [];
@@ -95,4 +103,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App); //Radium allows us to add functionality (for example, pseudo styles)
+							// to our styling
