@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Component-Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 /* This file is the product of all Lessons in Module 4 */
 
@@ -92,16 +92,18 @@ class App extends Component {
 		}
 
     return (
-      <div className='App'>
-				<p className={classes.join(' ')}>Instructions for this application here</p>
-				<button 
-				style={style}
-				onClick={this.togglePersonHandler}>Show/Hide</button>
-				{persons}
-      </div>
+			<StyleRoot>
+				<div className='App'>
+					<p className={classes.join(' ')}>Instructions for this application here</p>
+					<button 
+					style={style}
+					onClick={this.togglePersonHandler}>Show/Hide</button>
+					{persons}
+				</div>
+			</StyleRoot>
     );
   }
 }
 
 export default Radium(App); //Radium allows us to add functionality (for example, pseudo styles)
-							// to our styling
+														// to our styling
