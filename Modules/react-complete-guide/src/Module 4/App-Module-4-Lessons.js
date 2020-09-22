@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import classes from './App.css';
-import Person from './Component-Person/Person';
+import classes from './containers/App.css';
+import Person from './components/Persons/Person/Person';
 
 /* This file is the product of all Lessons in Module 4 */
 
