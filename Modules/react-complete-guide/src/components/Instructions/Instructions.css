@@ -1,0 +1,28 @@
+.blue {
+	color: blue;
+}
+  
+.bold {
+	font-weight: bold;
+}
+
+.Instructions button {
+	background-color: green;
+	color: white;
+	padding: 8px;
+	margin: .5rem;
+	cursor: pointer;
+}
+
+.Instructions button:hover {
+	background-color: lightgreen;
+	color: black;
+}
+
+.Instructions button.Red {
+	background-color: red;
+}
+
+.Instructions button.Red:hover {
+	background-color: salmon;
+}
