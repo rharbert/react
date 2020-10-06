@@ -3,15 +3,17 @@ import classes from './Instructions.css';
 
 
 const instructions = (props) => {
-
-	useEffect(() => {
+	useEffect( () => {
 		console.log('[Instructions.js] useEffect');
 		// HTTP request. You could use the useEffect functional component lifecycle hook to send an HTTP request.
 		setTimeout(() => {
 			alert("Data updated!");
 		}, 1000);
-	}, [props.persons]);
-	
+		return () => {
+			console.log('[Instructions.js] Cleanup work in useEffect');
+		};
+	}, []); //props.persons could be placed into the array as an argument here. Meaning what exactly?
+	//Presently, the empty array means that the useEffect runs when Instructions.js initializes and then when it's "Removed" 
 	const assignedClasses = [];
 	let btnClass = '';
 	if (props.showPersons) {

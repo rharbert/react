@@ -18,8 +18,9 @@ class App extends Component {
       { id: '456', name: 'Abel', age: 30, username: 'ABC456'},
       { id: '789', name: 'Abinadab', age: 250, username: 'ABC789'}
 		],
-		showPersons: false
-	}
+		showPersons: false, 
+		showInstructions: true
+	};
 
 	/******************** Lifecycle Hooks: Creation ********************/
 	static getDerivedStateFromProps(props, state) {
@@ -91,12 +92,17 @@ class App extends Component {
 
     return (
 				<div className={classes.App}>
-					<Instructions //aka Cockpit
-						title={this.props.appTitle}
-						showPersons={this.state.showPersons}
-						persons={this.state.persons}
-						clicked={this.togglePersonHandler}
-					/>
+					<button
+						onClick={() => {this.setState({ showInstructions: false });
+						}}> Remove </button>
+					
+					{this.state.showInstructions ? (
+						<Instructions //aka Cockpit
+							title={this.props.appTitle}
+							showPersons={this.state.showPersons}
+							persons={this.state.persons}
+							clicked={this.togglePersonHandler}/>
+						) : null }
 					{persons}
 				</div>
     );

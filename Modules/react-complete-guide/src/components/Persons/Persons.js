@@ -23,6 +23,12 @@ class Persons extends Component {
 		console.log('[Persons.s] componentDidUpdate');
 		console.log(snapshot);
 	}
+
+	/***** Hook for Cleanup Work *****/
+	componentWillUnmount() {
+		console.log('[Persons.s] componentWillUnmount');
+	}
+
 	/******************** Lifecycle Hooks: Updating props changes ********************/
 	
 	render (){
