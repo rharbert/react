@@ -35,7 +35,12 @@ class App extends Component {
 	/******************** Lifecycle Hooks: Updating state changes ********************/
 	shouldComponentUpdate(nextProps, nextState) {
 		console.log('[App.js] shouldComponentUpdate');
-		return true;
+		/* Component only updates if something changes with 'persons' */
+		if (nextProps.persons !== this.props.persons) {
+			return true;
+		} else {
+			return false;
+		}
 	}	
 	
 	componentDidUpdate() {
