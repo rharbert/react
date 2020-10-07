@@ -20,10 +20,10 @@ const instructions = (props) => {
 		btnClass = classes.Red;
 	}
 
-	if (props.persons.length <= 2) {
+	if (props.personsLength <= 2) {
 			assignedClasses.push(classes.blue);
 	}
-	if(props.persons.length <= 1) {
+	if(props.personsLength <= 1) {
 			assignedClasses.push(classes.bold);
 	}
 	
@@ -38,5 +38,5 @@ const instructions = (props) => {
 };
 
 //aka cockpit (but I don't like this name so I'm using 'instructions')
-export default instructions;  
+export default React.memo(instructions);  // "React.memo" is a way to make sure this file does not re-render unless it's changed; for optimization purposes
 
