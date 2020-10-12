@@ -14,8 +14,7 @@ class Person extends Component {
 			<input
 			type="text"
 			onChange={this.props.change}
-			value={this.props.username}>
-			</input>
+			value={this.props.username}/>
 		</Aux>);
 	}
 };

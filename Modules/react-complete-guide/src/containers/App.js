@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
+import WithClass from '../hoc/WithClass';
 
 /* This file is the product of all Lessons in Module 7 */
 
@@ -96,7 +97,7 @@ class App extends Component {
 		}
 
     return (
-				<div className={classes.App}>
+				<WithClass classes={classes.App}>
 					<button
 						onClick={() => {this.setState({ showInstructions: false });
 						}}> Remove </button>
@@ -109,7 +110,7 @@ class App extends Component {
 							clicked={this.togglePersonHandler}/>
 						) : null }
 					{persons}
-				</div>
+				</WithClass>
     );
   }
 }
