@@ -8,6 +8,10 @@ class Persons extends PureComponent {
 		return state;
 	}
 
+	// We have altered file to PureComponent (as opposed to just "Component") in order to 
+	// execute all the code associated with the shouldComponentUpdate  JS below. PureComponent innately
+	// looks for all props changes without having to code it all out.
+	
 	// shouldComponentUpdate(nextProps, nextState) {
 	// 	console.log('[Persons.js] shouldComponentUpdate');
 	// 	if (
