@@ -71,6 +71,12 @@ class App extends Component {
       	{id: '789', name: 'Abinadab', age: 250, username: event.target.value}
 			]
 		});
+
+		/* 3 rows of code below is supposed to replace the setState directly above, but it doesn't work
+			 correctly. Why??!! */
+		// const persons = [...this.state.persons];
+		// persons[personIndex] = person;
+		// this.setState({persons: persons});
 	}
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons.slice(); //Copies original array w/o mutation
