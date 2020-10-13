@@ -9,9 +9,10 @@
 .Instructions button {
 	background-color: green;
 	color: white;
-	padding: 8px;
+	padding: 12px;
 	margin: .5rem;
 	cursor: pointer;
+	width: 10%;
 }
 
 .Instructions button:hover {

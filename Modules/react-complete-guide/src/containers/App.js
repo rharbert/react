@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
-import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxiliary';
+import withClass from '../hoc/withClass';
 
 /* This file is the product of all Lessons in Module 7 */
 
