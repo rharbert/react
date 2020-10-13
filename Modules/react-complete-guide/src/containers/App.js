@@ -79,12 +79,12 @@ class App extends Component {
 		// this.setState({persons: persons});
 
 		// Code directly below for setting state properly when new state is dependent upon actual previous state
-		this.setState((prevState, props) => {
-			return {
-				persons: persons,
-				changeCounter: prevState.changeCounter + 1
-			};
-		});
+		// this.setState((prevState, props) => {
+		// 	return {
+		// 		persons: persons,
+		// 		changeCounter: prevState.changeCounter + 1
+		// 	};
+		// });
 	}
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons.slice(); //Copies original array w/o mutation

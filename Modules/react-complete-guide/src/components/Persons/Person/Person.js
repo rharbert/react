@@ -5,6 +5,16 @@ import Aux from '../../../hoc/Auxiliary';
 import withClass from '../../../hoc/withClass';
 
 class Person extends Component { 
+	constructor(props) {
+		super();
+		this.inputElementRef = React.createRef();
+	}
+
+	componentDidMount() {
+		// this.inputElement.focus();
+		this.inputElementRef.current.focus();
+	}
+
 	render () {
 		console.log('[Person.js] rendering...');
 		return (
@@ -17,10 +27,12 @@ class Person extends Component {
 				<p>{this.props.children}</p>
 
 				<input
+				ref={this.inputElementRef}
 				type="text"
 				onChange={this.props.change}
 				value={this.props.username}
 				/>
+
 			</Aux>
 		);
 	}
@@ -31,7 +43,7 @@ click: PropTypes.func,
 name: PropTypes.string, 
 age: PropTypes.number, 
 username: PropTypes.string,
-changed: PropTypes.func
+change: PropTypes.func
 };
 
 export default withClass(Person, classes.Person);  
