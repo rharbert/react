@@ -11,7 +11,8 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		console.log('[App.js] constructor');
-	}	 /******************** Lifecycle Hook: Creation ********************/
+	}
+	/******************** Lifecycle Hook: Creation ********************/
 
 	state = {
 		persons: [
@@ -31,9 +32,10 @@ class App extends Component {
 	
 	componentDidMount() {
 		console.log('[App.js] componentDidMount');
-	}		/******************** Lifecycle Hooks: Creation ********************/
+	}
+	/******************** Lifecycle Hooks: Creation ********************/
 	
-	/******************** Lifecycle Hooks: Updating state changes ********************/
+	/******************** Lifecycle Hooks: Updating ********************/
 	shouldComponentUpdate(nextProps, nextState) {
 		console.log('[App.js] shouldComponentUpdate');
 		/* Component only updates if something changes with 'persons' */
@@ -46,7 +48,8 @@ class App extends Component {
 	
 	componentDidUpdate() {
 		console.log('[App.js] componentDidUpdate');
-	}	/******************** Lifecycle Hooks: Updating state changes ********************/
+	}
+	/******************** Lifecycle Hooks: Updating ********************/
 	
 
 	/******************** Begin Component Methods ********************/
@@ -54,7 +57,6 @@ class App extends Component {
 		const doesShow = this.state.showPersons;
 		this.setState({showPersons: !doesShow});
 	}
-
 	usernameHandler = (event, id) => {
 		const personIndex = this.state.persons.findIndex(person => {
 			return person.id === id;
@@ -74,43 +76,50 @@ class App extends Component {
 			]
 		});
 	}
-
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons.slice(); //Copies original array w/o mutation
-		const persons = [...this.state.persons]; //Copies original array w/o mutation, ES6 method (aka spread operator)
+		const persons = [...this.state.persons]; //Copies original array w/o mutation using spread operator (ES6 method)
 		persons.splice(personIndex, 1);
 		this.setState({persons: persons});
 	}
 	/******************** End Component Methods ********************/
 
+	
 	render() {
 		console.log('[App.js] render');
 		let persons = null; 
 	
 		if (this.state.showPersons) {
-			persons =
-					/* Insert Persons.js Component */
-					<Persons													
-					persons={this.state.persons}
-					clicked={this.deletePersonHandler}
-					changed={this.usernameHandler}/>; 
+			persons = (
+				/* Insert Persons.js Component */
+				<Persons													
+				persons={this.state.persons}
+				clicked={this.deletePersonHandler}
+				changed={this.usernameHandler}/> 
+			);
 		}
 
     return (
-				<WithClass classes={classes.App}>
-					<button
-						onClick={() => {this.setState({ showInstructions: false });
-						}}> Remove </button>
-					
-					{this.state.showInstructions ? (
-						<Instructions //aka Cockpit
-							title={this.props.appTitle}
-							showPersons={this.state.showPersons}
-							personsLength={this.state.persons.length}
-							clicked={this.togglePersonHandler}/>
-						) : null }
-					{persons}
-				</WithClass>
+			<WithClass classes={classes.App}>
+				
+				<button
+					onClick={() => {
+						this.setState({ showInstructions: false });
+					}}
+				> Remove </button>
+				
+				{this.state.showInstructions ? (
+					<Instructions //aka Cockpit
+						title={this.props.appTitle}
+						showPersons={this.state.showPersons}
+						personsLength={this.state.persons.length}
+						clicked={this.togglePersonHandler}
+					/>
+					) : null }
+
+				{persons}
+
+			</WithClass>
     );
   }
 }
