@@ -9,9 +9,10 @@ const instructions = (props) => {
 	useEffect( () => {
 		console.log('[Instructions.js] useEffect');
 		// The useEffect functional component lifecycle hook can be used to send an HTTP request.
-		setTimeout(() => {
-			alert("Data updated!");
-		}, 1000);
+		// setTimeout(() => {
+		// 	alert("Data updated!");
+		// }, 1000);
+		toggleBtnRef.current.click();
 		return () => {
 			console.log('[Instructions.js] Cleanup work in useEffect');
 		};
