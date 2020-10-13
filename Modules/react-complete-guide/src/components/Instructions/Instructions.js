@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Instructions.css';
 
 //Named "Cockpit" in lessons, but I don't like this name so I'm using 'instructions'
 const instructions = (props) => {
+
+	const toggleBtnRef = useRef(null);
+
 	useEffect( () => {
 		console.log('[Instructions.js] useEffect');
 		// The useEffect functional component lifecycle hook can be used to send an HTTP request.
@@ -25,11 +28,17 @@ const instructions = (props) => {
 	if (props.personsLength <= 1) {
 			assignedClasses.push(classes.bold);
 	}
+
 	return (
 		<div className={classes.Instructions}>
 			<h1>{props.title}</h1>
 			<p className={assignedClasses.join(' ')}>Instructions for this application here</p>
-			<button className={btnClass} onClick={props.clicked}>Show/Hide</button>
+			<button
+				ref={toggleBtnRef}
+				className={btnClass}
+				onClick={props.clicked}>
+					Show/Hide
+			</button>
 		</div>
 	);
 };

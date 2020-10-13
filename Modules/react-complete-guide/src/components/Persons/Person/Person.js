@@ -27,7 +27,8 @@ class Person extends Component {
 				<p>{this.props.children}</p>
 
 				<input
-				ref={this.inputElementRef}
+				// ref={(inputEl) => {this.inputElement = inputEl}} //This ref works with the commented out portion of the componentDidMount above; older methodology
+				ref={this.inputElementRef} //This ref works with the constructor function and componentDidMount above; latest methodology
 				type="text"
 				onChange={this.props.change}
 				value={this.props.username}
