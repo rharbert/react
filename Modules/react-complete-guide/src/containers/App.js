@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxiliary';
 
 /* This file is the product of all Lessons in Module 7 */
 
@@ -95,8 +96,7 @@ class App extends Component {
 		}
 
     return (
-			<WithClass classes={classes.App}>
-				
+			<Aux>
 				<button
 					onClick={() => {
 						this.setState({ showInstructions: false });
@@ -113,10 +113,9 @@ class App extends Component {
 					) : null }
 
 				{persons}
-
-			</WithClass>
+			</Aux>	
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
