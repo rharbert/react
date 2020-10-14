@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import classes from './Instructions.css';
+import AuthContext from '../../context/auth-context';
 
 //Named "Cockpit" in lessons, but I don't like this name so I'm using 'instructions'
 const instructions = (props) => {
@@ -40,6 +41,9 @@ const instructions = (props) => {
 				onClick={props.clicked}>
 					Show/Hide
 			</button>
+			<AuthContext.Consumer>
+			{(context) => <button onClick={context.login}>Login</button>}	
+			</AuthContext.Consumer>
 		</div>
 	);
 };

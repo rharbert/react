@@ -5,6 +5,7 @@ import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
 import Aux from '../hoc/Auxiliary';
 import withClass from '../hoc/withClass';
+import AuthContext from '../context/auth-context';
 
 /* This file is the product of all Lessons in Module 7 */
 
@@ -23,7 +24,9 @@ class App extends Component {
       { id: '789', name: 'Abinadab', age: 250, username: 'ABC789'}
 		],
 		showPersons: false, 
-		showInstructions: true
+		showInstructions: true,
+		changeCounter: 0,
+		authenticated: false
 	};
 
 	/******************** Lifecycle Hooks: Creation ********************/
@@ -82,17 +85,20 @@ class App extends Component {
 		// 		changeCounter: prevState.changeCounter + 1
 		// 	};
 		// });
-	}
+	};
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons.slice(); //Copies original array w/o mutation
 		const persons = [...this.state.persons]; //Copies original array w/o mutation using spread operator (ES6 method)
 		persons.splice(personIndex, 1);
 		this.setState({persons: persons});
-	}
+	};
 	togglePersonHandler = () => {
 		const doesShow = this.state.showPersons;
 		this.setState({showPersons: !doesShow});
-	}
+	};
+	loginHandler = () => {
+		this.setState({authenticated: true});
+	};
 	/******************** End Component Methods ********************/
 
 	
@@ -106,28 +112,38 @@ class App extends Component {
 				<Persons													
 				persons={this.state.persons}
 				clicked={this.deletePersonHandler}
-				changed={this.usernameHandler}/> 
+				changed={this.usernameHandler}
+				isAuthenticated={this.state.authenticated}
+				/> 
 			);
 		}
 
     return (
 			<Aux>
+
 				<button
 					onClick={ () => {
 						this.setState({ showInstructions: false });
 					}}
 				> Remove </button>
-				
-				{this.state.showInstructions ? (
-					<Instructions //aka Cockpit
-						title={this.props.appTitle}
-						showPersons={this.state.showPersons}
-						personsLength={this.state.persons.length}
-						clicked={this.togglePersonHandler}
-					/>
-					) : null }
 
-				{persons}
+				<AuthContext.Provider value={{
+					authenticated: this.state.authenticated, 
+					login: this.loginHandler
+					}}
+				>
+					{this.state.showInstructions ? (
+						<Instructions //aka Cockpit
+							title={this.props.appTitle}
+							showPersons={this.state.showPersons}
+							personsLength={this.state.persons.length}
+							clicked={this.togglePersonHandler}
+						/>
+						) : null }
+
+					{persons}
+				</AuthContext.Provider>
+
 			</Aux>	
     );
   }
