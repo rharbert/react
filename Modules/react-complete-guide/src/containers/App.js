@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
-import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxiliary';
-
+import withClass from '../hoc/withClass';
 
 /* This file is the product of all Lessons in Module 7 */
 
@@ -70,13 +69,13 @@ class App extends Component {
 			]
 		});
 
-		/* 3 rows of code below is supposed to replace the setState directly above, but it doesn't work
-			 correctly. Why??!! */
+		/* 3 rows of code below supposed to replace the setState directly above, but it doesn't work
+			 correctly. Why not??!! */
 		// const persons = [...this.state.persons];
 		// persons[personIndex] = person;
 		// this.setState({persons: persons});
 
-		// Code directly below for setting state properly when new state is dependent upon actual previous state
+		// Set state properly when new state is dependent upon actual previous state
 		// this.setState((prevState, props) => {
 		// 	return {
 		// 		persons: persons,
