@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
 import classes from '../containers/App.css';
 import Persons from '../components/Persons/Persons';
 import Instructions from '../components/Instructions/Instructions';
-import Aux from '../hoc/Auxiliary';
 import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxiliary';
+
 
 /* This file is the product of all Lessons in Module 7 */
 
@@ -49,10 +51,6 @@ class App extends Component {
 	
 
 	/******************** Begin Component Methods ********************/
-	togglePersonHandler = () => {
-		const doesShow = this.state.showPersons;
-		this.setState({showPersons: !doesShow});
-	}
 	usernameHandler = (event, id) => {
 		const personIndex = this.state.persons.findIndex(person => {
 			return person.id === id;
@@ -92,6 +90,10 @@ class App extends Component {
 		persons.splice(personIndex, 1);
 		this.setState({persons: persons});
 	}
+	togglePersonHandler = () => {
+		const doesShow = this.state.showPersons;
+		this.setState({showPersons: !doesShow});
+	}
 	/******************** End Component Methods ********************/
 
 	
@@ -112,7 +114,7 @@ class App extends Component {
     return (
 			<Aux>
 				<button
-					onClick={() => {
+					onClick={ () => {
 						this.setState({ showInstructions: false });
 					}}
 				> Remove </button>

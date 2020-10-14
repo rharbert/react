@@ -4,10 +4,10 @@ import Person from './Person/Person';
 class Persons extends PureComponent {
 
 	/******************** Begin Lifecycle Hooks: Updating props changes ********************/
-	static getDerivedStateFromProps(props, state) {
-		console.log('[Persons.js] getDerivedStateFromProps');
-		return state;
-	}
+	// static getDerivedStateFromProps(props, state) {
+	// 	console.log('[Persons.js] getDerivedStateFromProps');
+	// 	return state;
+	// }
 
 	/* We have altered this file to PureComponent (as opposed to just "Component") in order to execute
 	all the code associated with the shouldComponentUpdate function below. PureComponent by definition
@@ -48,12 +48,12 @@ class Persons extends PureComponent {
 		return this.props.persons.map((person, index) => {
 			return (
 				<Person
-				click={() => this.props.clicked(index)}
+				click={ () => this.props.clicked(index)}
 				name={person.name}
 				age={person.age}
 				username={person.username} 
 				key={person.id}
-				change={(event) => this.props.changed(event, person.id)}
+				changed={(event) => this.props.changed(event, person.id)}
 				/>
 			);
 		});

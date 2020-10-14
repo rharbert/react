@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+
 import PropTypes from 'prop-types';
-import classes from './Person.css';
 import Aux from '../../../hoc/Auxiliary';
 import withClass from '../../../hoc/withClass';
+import classes from './Person.css';
 
 class Person extends Component { 
 	constructor(props) {
@@ -30,7 +31,7 @@ class Person extends Component {
 				// ref={(inputEl) => {this.inputElement = inputEl}} //This ref works with the commented out portion of the componentDidMount above; older methodology
 				ref={this.inputElementRef} //This ref works with the constructor function and componentDidMount above; latest methodology
 				type="text"
-				onChange={this.props.change}
+				onChange={this.props.changed}
 				value={this.props.username}
 				/>
 
