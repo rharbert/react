@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import classes from './Instructions.css';
 import AuthContext from '../../context/auth-context';
 
@@ -6,6 +6,7 @@ import AuthContext from '../../context/auth-context';
 const instructions = (props) => {
 
 	const toggleBtnRef = useRef(null);
+	const authContext = useContext(AuthContext);
 
 	useEffect( () => {
 		console.log('[Instructions.js] useEffect');
@@ -25,10 +26,10 @@ const instructions = (props) => {
 		btnClass = classes.Red;
 	}
 	if (props.personsLength <= 2) {
-			assignedClasses.push(classes.blue);
+		assignedClasses.push(classes.blue);
 	}
 	if (props.personsLength <= 1) {
-			assignedClasses.push(classes.bold);
+		assignedClasses.push(classes.bold);
 	}
 
 	return (
@@ -41,9 +42,9 @@ const instructions = (props) => {
 				onClick={props.clicked}>
 					Show/Hide
 			</button>
-			<AuthContext.Consumer>
-			{(context) => <button onClick={context.login}>Login</button>}	
-			</AuthContext.Consumer>
+		
+			<button onClick={authContext.login}>Login</button>}	
+			
 		</div>
 	);
 };
