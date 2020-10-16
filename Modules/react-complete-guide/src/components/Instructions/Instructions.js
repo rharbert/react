@@ -43,7 +43,7 @@ const instructions = (props) => {
 					Show/Hide
 			</button>
 		
-			<button onClick={authContext.login}>Login</button>}	
+			<button onClick={authContext.login}>Login</button>	
 			
 		</div>
 	);
